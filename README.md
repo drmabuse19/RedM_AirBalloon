@@ -1,4 +1,4 @@
-# Hot Air Balloon Spawn Script for RedM
+# Hot Air Balloon Spawn Script for RedM / 6c6
 
 This script enables players in a RedM server to spawn and delete a hot air balloon dynamically at specific locations on the map. It adds an immersive element to the gameplay, allowing players to explore the world from the skies in a leisurely manner. The script also provides basic controls for maneuvering the balloon in flight.
 
