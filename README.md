@@ -16,7 +16,7 @@ This script enables players in a RedM server to spawn and delete a hot air ballo
     start hot_air_balloon_spawn
     ```
 
-3. **Script Dependencies:** Ensure you have the latest version of FiveM and all necessary dependencies installed on your server for this script to run smoothly. This script requires no external resources or libraries.
+3. **Script Dependencies:** Ensure you have the latest version of RedM and all necessary dependencies installed on your server for this script to run smoothly. This script requires no external resources or libraries.
 
 ## Usage
 
