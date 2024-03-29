@@ -1,39 +1,30 @@
--- Spawn Balloon --------------------------------------------------------------------
-
-
-
-
 local balloon = nil
 
 
 Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		local coords = GetEntityCoords(PlayerPedId())
-    if (Vdist(coords.x, coords.y, coords.z, -202.877, 739.99, 122.1846) < 3.0) then
-            DrawTxt("Press [~e~SPACEBAR~q~] to Ride Baloon.", 0.50, 0.85, 0.7, 0.7, true, 255, 255, 255, 255, true)
-            if IsControlJustReleased(0, 0xD9D0E1C0) then -- SPACEBAR
+    while true do
+        Citizen.Wait(1)
+        local coords = GetEntityCoords(PlayerPedId())
+        -- Debugging text to ensure the loop runs
+        
+        
+        -- Check for spawn proximity 
+        if (Vdist(coords.x, coords.y, coords.z, 1423.25,  -1309.64,  79.9) < 5.0) then
+            DrawTxt("Trykk  [~e~G~q~] for å hente luftballong.", 0.50, 0.85, 0.7, 0.7, true, 255, 255, 255, 255, true)
+            if IsControlJustReleased(0, 0x760A9C6F) then -- G
                 TriggerEvent("SpawnBalloon")
-                --print('openedwarmenu')
-
+            end
+        end
+                -- Debugging text to show player's coordinates
+        --DrawTxt("Player Coords: " .. tostring(coords), 0.45, 0.75, 0.4, 0.4, true, 255, 255, 255, 255, true)
+			--Add a landing zone
+        if (Vdist(coords.x, coords.y, coords.z, 1453.61,  -1338.74, 83.84) < 10.0) and IsPedInFlyingVehicle(PlayerPedId()) then
+            DrawTxt("Trykk [~e~G~q~] for å slette luftballong.", 0.50, 0.90, 0.7, 0.7, true, 255, 255, 255, 255, true)
+            if IsControlJustReleased(0, 0x760A9C6F) then -- H
+                TriggerEvent("DeleteBalloon")
             end
         end
     end
-end)
-
-Citizen.CreateThread(function()
-    
-        local blip = N_0x554d9d53f696d002(1664425300, -202.877, 739.99, 122.1846)
-        SetBlipSprite(blip, 2061546582, 1)
-        SetBlipScale(blip, 0.2)
-        Citizen.InvokeNative(0x9CB1A1623062F402, blip, "Ride Baloon")
-
-
-      --[[   local baloon = CreateObject(952582462, -202.877, 739.99, 122.1846, true, false, true)
-            SetEntityHeading(baloon, 200.08)
-            PlaceObjectOnGroundProperly(baloon)
-            SetEntityAsMissionEntity(baloon) ]]
-    
 end)
 
 function DrawTxt(str, x, y, w, h, enableShadow, col1, col2, col3, a, centre)
@@ -70,6 +61,19 @@ AddEventHandler('SpawnBalloon', function()
 
     end)
 end)
+
+
+-- Modified DeleteBalloon event handler to correct the event name
+AddEventHandler('DeleteBalloon', function()
+    Citizen.CreateThread(function()
+        if DoesEntityExist(balloon) then
+            SetEntityAsMissionEntity(balloon, true, true)
+            DeleteEntity(balloon)
+            balloon = nil
+        end
+    end)
+end)
+
 
 Citizen.CreateThread(function()
     while true do
