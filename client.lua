@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
         
         -- Check for spawn proximity 
         if (Vdist(coords.x, coords.y, coords.z, 1423.25,  -1309.64,  79.9) < 5.0) then
-            DrawTxt("Trykk  [~e~G~q~] for å hente luftballong.", 0.50, 0.85, 0.7, 0.7, true, 255, 255, 255, 255, true)
+            DrawTxt("Press  [~e~G~q~] for airballon", 0.50, 0.85, 0.7, 0.7, true, 255, 255, 255, 255, true)
             if IsControlJustReleased(0, 0x760A9C6F) then -- G
                 TriggerEvent("SpawnBalloon")
             end
@@ -19,7 +19,7 @@ Citizen.CreateThread(function()
         --DrawTxt("Player Coords: " .. tostring(coords), 0.45, 0.75, 0.4, 0.4, true, 255, 255, 255, 255, true)
 			--Add a landing zone
         if (Vdist(coords.x, coords.y, coords.z, 1453.61,  -1338.74, 83.84) < 10.0) and IsPedInFlyingVehicle(PlayerPedId()) then
-            DrawTxt("Trykk [~e~G~q~] for å slette luftballong.", 0.50, 0.90, 0.7, 0.7, true, 255, 255, 255, 255, true)
+            DrawTxt("Press [~e~G~q~] for airballon", 0.50, 0.90, 0.7, 0.7, true, 255, 255, 255, 255, true)
             if IsControlJustReleased(0, 0x760A9C6F) then -- H
                 TriggerEvent("DeleteBalloon")
             end
